@@ -11,11 +11,11 @@ class Book:
     self.genre = genre
     self.user_id = user_id
 
-  def __repr__(self):
-    return (
-      f"<Book {self.id}: {self.title}, {self.genre}, " +
-      f"User ID: {self.user_id}>"
-    )
+  # def __repr__(self):
+  #   return (
+  #     f"<Book {self.id}: {self.title}, {self.genre}, " +
+  #     f"User ID: {self.user_id}>"
+  #   )
 
   @property
   def title(self):
@@ -176,7 +176,6 @@ class Book:
     row = CURSOR.execute(sql, (title,)).fetchone()
     return cls.instance_from_db(row) if row else None
   
-
 # print(Book.get_all())
   
  

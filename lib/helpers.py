@@ -2,7 +2,7 @@ from user import User
 from book import Book
 
 def exit_program():
-    print("Goodbye!")
+    print("Goodbye!\n")
     exit()
 
 # User functions
@@ -10,7 +10,17 @@ def exit_program():
 def list_users():
     users = User.get_all()
     for user in users:
-        print(user)
+        print(f"{user.id}. {user.name}")
+
+def show_user_details(input_id):
+    user = User.find_by_id(input_id)
+    if user:
+        print(f"\nName: {user.name}\nAddress: {user.address}\nMembership: {user.membership}\n{user.name}'s books:")
+        books = user.books()
+        for book in books:
+            print(f"{book.id}. {book.title}")
+    else:
+        print(f'User {input_id} not found')
 
 def find_user_by_name():
     name = input("Enter the user's name: ")
@@ -25,9 +35,10 @@ def find_user_by_id():
 def create_user():
     name = input("Enter the user's name: ")
     address = input("Enter the user's address: ")
+    membership = input("Enter the user's membership level: ")
     try:
-        user = User.create(name, address)
-        print(f'Success: {user} created.')
+        user = User.create(name, address, membership)
+        print(f'Success: {user.name} user created.')
     except Exception as exc:
         print("Error creating user: ", exc)
 
@@ -112,14 +123,13 @@ def delete_book():
     else:
         print(f'Book {id_} not found.')
 
-def list_user_books():
-    user_id = input("Enter the user's id: ")
-    user = User.find_by_id(user_id)
-    if user:
-        books = user.books()
-        for book in books:
-            print(book.title)
-    else:
-        print(f'User not found.')
+# def list_user_books(input_id):
+#     user = User.find_by_id(input_id)
+#     if user:
+#         books = user.books()
+#         for book in books:
+#             print(f"{book.id}. {book.title}")
+#     else:
+#         print(f'User not found.')
 
 # list_books()

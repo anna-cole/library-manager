@@ -4,13 +4,14 @@ class User:
   
     all = {}
 
-    def __init__(self, name, address, id=None):
+    def __init__(self, name, address, membership, id=None):
         self.id = id
         self.name = name
         self.address = address
+        self.membership = membership
 
-    def __repr__(self):
-        return f"<User {self.id}: {self.name}, {self.address}>"
+    # def __repr__(self):
+    #     return f"<User {self.id}: {self.name}, {self.address}, {self.membership}>"
 
     @property
     def name(self):
@@ -33,6 +34,17 @@ class User:
             self._address = address
         else:
             raise ValueError("Address must be a non-empty string")
+        
+    @property
+    def membership(self):
+        return self._membership
+
+    @membership.setter
+    def membership(self, membership):
+        if isinstance(membership, str) and len(membership):
+            self._membership = membership
+        else:
+            raise ValueError("Membership must be a non-empty string")
 
     @classmethod
     def create_table(cls):
@@ -41,7 +53,8 @@ class User:
             CREATE TABLE IF NOT EXISTS users (
             id INTEGER PRIMARY KEY,
             name TEXT,
-            address TEXT)
+            address TEXT,
+            membership TEXT)
         """
         CURSOR.execute(sql)
         CONN.commit()
@@ -60,20 +73,20 @@ class User:
         Update object id attribute using the primary key value of new row.
         Save the object in local dictionary using table row's PK as dictionary key"""
         sql = """
-            INSERT INTO users (name, address)
-            VALUES (?, ?)
+            INSERT INTO users (name, address, membership)
+            VALUES (?, ?, ?)
         """
 
-        CURSOR.execute(sql, (self.name, self.address))
+        CURSOR.execute(sql, (self.name, self.address, self.membership))
         CONN.commit()
 
         self.id = CURSOR.lastrowid
         type(self).all[self.id] = self
 
     @classmethod
-    def create(cls, name, address):
+    def create(cls, name, address, membership):
         """ Initialize a new User instance and save the object to the database """
-        user = cls(name, address)
+        user = cls(name, address, membership)
         user.save()
         return user
 
@@ -81,10 +94,10 @@ class User:
         """Update the table row corresponding to the current User instance."""
         sql = """
             UPDATE users
-            SET name = ?, address = ?
+            SET name = ?, address = ?, membership = ?
             WHERE id = ?
         """
-        CURSOR.execute(sql, (self.name, self.address, self.id))
+        CURSOR.execute(sql, (self.name, self.address, self.membership, self.id))
         CONN.commit()
 
     def delete(self):
@@ -115,9 +128,10 @@ class User:
             # ensure attributes match row values in case local instance was modified
             user.name = row[1]
             user.address = row[2]
+            user.membership = row[3]
         else:
             # not in dictionary, create new instance and add to dictionary
-            user = cls(row[1], row[2])
+            user = cls(row[1], row[2], row[3])
             user.id = row[0]
             cls.all[user.id] = user
         return user

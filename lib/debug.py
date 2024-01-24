@@ -13,10 +13,10 @@ def reset_database():
   print('Database resetted')
 
   # Create seed data
-  arya = User.create("Arya", "13 Winterfell blvd")
-  loras = User.create("Loras", "14 Highgarden st")
-  syrio = User.create("Syrio", "15 Braavos rd")
-  daenerys = User.create("Daenerys", "16 Dragonstone blvd")
+  arya = User.create("Arya", "13 Winterfell blvd", "Gold")
+  loras = User.create("Loras", "14 Highgarden st", "Silver")
+  syrio = User.create("Syrio", "15 Braavos rd", "Platinum")
+  daenerys = User.create("Daenerys", "16 Dragonstone blvd", "Silver")
   Book.create("A Song Of Ice And Fire", "Fantasy", arya.id)
   Book.create("The Other Side Of Midnight", "Thriller", arya.id)
   Book.create("Ramses: The Son Of Light", "Biography", syrio.id)
@@ -25,7 +25,7 @@ def reset_database():
   Book.create("The Secret", "Self-help", syrio.id)
   Book.create("Stardust", "Fantasy", daenerys.id)
 
-#breakpoint()
+breakpoint()
 #reset_database()
 
 
