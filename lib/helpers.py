@@ -4,33 +4,31 @@ from book import Book
 def exit_program():
     print("Goodbye!\n")
     exit()
-
-# User functions
-    
+       
 def list_users():
     users = User.get_all()
-    for user in users:
-        print(f"{user.id}. {user.name}")
+    i = 1
+    while i <= len(users):
+        for user in users:
+            print(f"{i}. {user.name}")
+            i += 1
 
-def show_user_details(input_id):
-    user = User.find_by_id(input_id)
-    if user:
-        print(f"\nName: {user.name}\nAddress: {user.address}\nMembership: {user.membership}\n{user.name}'s books:")
-        books = user.books()
-        for book in books:
-            print(f"{book.id}. {book.title}")
-    else:
-        print(f'User {input_id} not found')
+def show_user(num):
+    users = User.get_all()
+    user = users[num - 1]
+    print(f"\nName: {user.name}\nAddress: {user.address}\nMembership: {user.membership}\n{user.name}'s books:")
+    books = user.books()
+    for book in books:
+        print(f"{book.id}. {book.title}")
 
-def find_user_by_name():
-    name = input("Enter the user's name: ")
-    user = User.find_by_name(name)
-    print(user) if user else print(f'User {name} not found')
+def show_book_details(choice):
+    books = Book.get_all()
+    for book in books:
+        if book.id == choice:
+            print(book.name)
 
-def find_user_by_id():
-    id_ = input("Enter the user's id: ")
-    user = User.find_by_id(id_)
-    print(user) if user else print(f'User {id_} not found')
+   
+
 
 def create_user():
     name = input("Enter the user's name: ")
@@ -42,47 +40,34 @@ def create_user():
     except Exception as exc:
         print("Error creating user: ", exc)
 
-def update_user():
-    id_ = input("Enter the user's id: ")
-    if user := User.find_by_id(id_):
-        try:
-            name = input("Enter the user's new name: ")
-            user.name = name
-            address = input("Enter the user's new address: ")
-            user.address = address
-
-            user.update()
-            print(f'Success: {user} updated.')
-        except Exception as exc:
-            print("Error updating user: ", exc)
-    else:
-        print(f'User {id_} not found')
-
 def delete_user():
-    id_ = input("Enter the user's id: ")
-    if user := User.find_by_id(id_):
-        user.delete()
-        print(f'User {id_} deleted')
+    input_user = input("Enter the user's name to confirm: ")
+    users = User.get_all()
+    for user in users:
+        if (user.name).lower() == (input_user).lower():
+            user.delete()
+            print(f'User {user.name} deleted\n')
+            return True
     else:
-        print(f'User {id_} not found')
-
+        print(f'User {input_user} not found\n')
+           
 
 # Book functions
-
-def list_books():
-    books = Book.get_all()
-    for book in books:
-        print(book)
+        
+def get_book_id(num):
+    book = Book.find_by_id(num)
+    if book.id == num:
+        return book.id
+     
+def list_books(num):
+    book = Book.find_by_id(num)
+    print(book.name) if book else print(f"Book not found.")
   
 def find_book_by_title():
     title = input("Enter the book's title: ")
     book = Book.find_by_title(title)
     print(book) if book else print(f'Book {title} not found.')
     
-def find_book_by_id():
-    id_ = input("Enter the book's id ")
-    book = Book.find_by_id(id_)
-    print(book) if book else print(f"Book {id_} not found.")
 
 def create_book():
     title = input("Enter the book's title: ")

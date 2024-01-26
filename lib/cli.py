@@ -1,17 +1,17 @@
 from helpers import (
     exit_program,
     list_users,
-    show_user_details,
+    show_user,
     create_user,
+    delete_user,
+    get_book_id, 
+    create_book
 
     # find_user_by_name,
     # find_user_by_id,
     # update_user,
-    # delete_user,
-    # list_books,
     # find_book_by_title,
     # find_book_by_id,
-    # create_book,
     # update_book,
     # delete_book,
     #list_user_books
@@ -24,27 +24,40 @@ def main():
             exit_program()
         elif choice == "u":
             list_users()
-            menu2()
+            users_overview_menu()
         elif choice == "b":
-            menu()
-        elif isinstance(choice, str) and choice != 'a':
-            show_user_details(choice)
-            menu3()
+            initial_menu()
         elif choice == "a":
             create_user()
             list_users()
-            menu2()
+            users_overview_menu()
+        elif choice == "d":
+            delete_user()
+            list_users()
+            users_overview_menu()
+        elif choice == "c":
+            create_book()
+        elif choice.isdigit():
+            show_user(int(choice))
+            user_menu()
+        else:
+            print("Invalid choice")
 
- 
+        # elif choice.isdigit():
+        #     find_book_by_id(int(choice)) 
+        # else:
+        #     try:
+        #         isinstance(int(choice), int)
+        #         show_user(int(choice))
+        #         user_menu()
+        #     except:
+        #         print("Invalid choice")
+
 
         # elif choice == "2":
         #     find_user_by_name()
-        # elif choice == "3":
-        #     find_user_by_id()
         # elif choice == "5":
         #     update_user()
-        # elif choice == "6":
-        #     delete_user()
         # elif choice == "7":
         #     list_books()
         # elif choice == "8":
@@ -59,34 +72,29 @@ def main():
         #     delete_book()
         # elif choice == "13":
         #     list_user_books()
-        else:
-            print("Invalid choice")
-
-def menu():
-    print("\nPlease choose from the following:\n")
-    print("Type U or u to see the users")
+        
+def initial_menu():
+    print("\nHello! Please choose from the following:\n")
+    print("Type U or u to see users")
     print("Type E or e to exit\n")
 
-menu()
+initial_menu()
 
-def menu2():
+def users_overview_menu():
     print("\n******************\n")
-    print("Please select the number of the user to see their details\n    or")
-    print("Type B or b to go back to the previous menu")
+    print("Type the user's number to see their details")
     print("Type A or a to add a new user")
-    print("Or type E or e to exit\n")
+    print("Type B or b to go back to previous menu")
+    print("Type E or e to exit\n")
 
-def menu3():
+def user_menu():
     print("\n******************\n")
-    print("Please choose from the following:\n")
-    print("Type the number of the book to see its details\n    or")
-    print("Type A or a to add a new book for this user")
+    print("Type the book's number to see its details")
+    print("Type C or c to add a new book for this user")
     print("Type D or d to delete this user")
-    print("Type B or b to go back to the previous menu")
-    print("Or type E or e to exit\n")
+    print("Type B or b to go back to previous menu")
+    print("Type E or e to exit\n")
 
-    # print("Or type E or e to exit")
-    # print("Type D or d do delete user")
     # print("Type B or b to see all books")
     # print("Type T or t to find book by title")
     # print("Type G or g to find book by gender")
