@@ -2,11 +2,14 @@ from user import User
 from book import Book
 
 def exit_program():
-    print("Goodbye!\n")
-    exit()
+    choice = input("\nAre you sure you want to exit? (y/n): ")
+    if choice.lower() == "y":
+        print("Goodbye!\n")
+        exit()
        
 def list_users():
     users = User.get_all()
+    print("\nAll users:")
     i = 1
     while i <= len(users):
         for user in users:
@@ -19,6 +22,16 @@ def show_user(num):
     print(f"\nName: {user.name}\nAddress: {user.address}\nMembership: {user.membership}\n{user.name}'s books:")
     list_books_per_user(user)
     
+def create_user():
+    name = input("Enter the user's name: ")
+    address = input("Enter the user's address: ")
+    membership = input("Enter user's membership level: ")
+    try:
+        user = User.create(name, address, membership)
+        print(f'\nSuccess: {user.name} created.')
+    except Exception as exc:
+        print("Error creating user: ", exc)
+
 def list_books_per_user(user):   
     books = user.books()
     i = 1
@@ -26,43 +39,34 @@ def list_books_per_user(user):
         for book in books:
             print(f"{i}. {book.title}")
             i += 1
-
-def create_book():
-    input_user = input("Enter user's name: ")
-    title = input("Enter the book's title: ")
-    genre = input("Enter the book's genre: ")
-    user = User.find_by_name(input_user)
-    user_id = user.id
-    try:
-        if user_id := User.find_by_id(user_id).id:
-            book = Book.create(title, genre, user_id)
-            print(f'Success: {book.title} created.')
-        else:
-            print(f'User {user_id} not found.')
-    except Exception as exc:
-            print('Error creating book: ', exc)
+    choice = input(f"\nWould you like to add a new book for {user.name}? (y/n): ")
+    if choice.lower() == "y":
+        create_book(user)
 
 def show_book(num):
     books = Book.get_all()
     book = books[num - 1]
     print(f"\nTitle: {book.title}\nGenre: {book.genre}")
 
-def create_user():
-    name = input("Enter the user's name: ")
-    address = input("Enter the user's address: ")
-    membership = input("Enter user's membership level: ")
+def create_book(user):
+    title = input("Enter the book's title: ")
+    genre = input("Enter the book's genre: ")
+    user_id = user.id
     try:
-        user = User.create(name, address, membership)
-        print(f'Success: {user.name} created.')
+        book = Book.create(title, genre, user_id)
+        print(f'\nSuccess: {book.title} book created for {user.name}.\n')
+        list_books_per_user(user)
     except Exception as exc:
-        print("Error creating user: ", exc)
+            print('Error creating book: ', exc)
+
+
 
 def delete_user():
-    input_user = input("Enter user's name: ").lower()
+    input_user = input("Enter user's name to confirm: ")
     user = User.find_by_name(input_user)
     if user:
         user.delete()
-        print(f'User {user.name} deleted\n')
+        print(f'User {user.name} deleted')
     else:
         print(f"User {input_user} not found")
 
