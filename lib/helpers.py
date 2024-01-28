@@ -11,16 +11,39 @@ def list_users():
     users = User.get_all()
     print("\nAll users:")
     i = 1
-    while i <= len(users):
-        for user in users:
-            print(f"{i}. {user.name}")
-            i += 1
+    for user in users:
+        print(f"{i}. {user.name}")
+        i += 1
 
-def show_user(num):
+def show_user_details():
     users = User.get_all()
-    user = users[num - 1]
-    print(f"\nName: {user.name}\nAddress: {user.address}\nMembership: {user.membership}\n{user.name}'s books:")
-    list_books_per_user(user)
+    input_name = input("Please enter user's name: ")
+    for user in users:
+        if input_name == user.name:
+            print(f"\nName: {user.name}\nAddress: {user.address}\nMembership: {user.membership}")
+            list_books_per_user(user)
+            return user 
+    else: print(f"\nUser {input_name} not found.")
+    show_user_details()
+    
+def list_books_per_user(user): 
+    print(f"\n{user.name}'s books:")  
+    books = user.books()
+    i = 1
+    for book in books:
+        print(f"{i}. {book.title}")
+        i += 1
+    
+   
+#recomecar daqui
+def show_book(num):
+    books = user.books()
+    book = books[num - 1]
+    print(f"\nTitle: {book.title}\nGenre: {book.genre}") 
+
+
+
+
     
 def create_user():
     name = input("Enter the user's name: ")
@@ -31,22 +54,6 @@ def create_user():
         print(f'\nSuccess: {user.name} created.')
     except Exception as exc:
         print("Error creating user: ", exc)
-
-def list_books_per_user(user):   
-    books = user.books()
-    i = 1
-    while i <= len(books):
-        for book in books:
-            print(f"{i}. {book.title}")
-            i += 1
-    choice = input(f"\nWould you like to add a new book for {user.name}? (y/n): ")
-    if choice.lower() == "y":
-        create_book(user)
-
-def show_book(num):
-    books = Book.get_all()
-    book = books[num - 1]
-    print(f"\nTitle: {book.title}\nGenre: {book.genre}")
 
 def create_book(user):
     title = input("Enter the book's title: ")
@@ -59,8 +66,6 @@ def create_book(user):
     except Exception as exc:
             print('Error creating book: ', exc)
 
-
-
 def delete_user():
     input_user = input("Enter user's name to confirm: ")
     user = User.find_by_name(input_user)
@@ -69,10 +74,7 @@ def delete_user():
         print(f'User {user.name} deleted')
     else:
         print(f"User {input_user} not found")
-
-   
-           
-        
+    
 def find_book_by_title():
     title = input("Enter the book's title: ")
     book = Book.find_by_title(title)
