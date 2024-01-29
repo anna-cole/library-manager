@@ -13,12 +13,14 @@ from helpers import (
     exit_program,
     list_users,
     show_user_details,
-
     create_user,
+    update_user,
     delete_user,
-    show_book, 
-    # delete_book,
-    # update_book
+    list_books,
+    show_book_details,
+    create_book,
+    update_book,
+    delete_book
 )
 
 def initial_loop():
@@ -30,9 +32,9 @@ def initial_loop():
             users_menu()
             users_loop()
         elif choice == "b":
-            #list_books()
-            #books_menu()
-            #books_loop()
+            list_books()
+            books_menu()
+            books_loop()
             pass
         elif choice == "e":
             exit_program()
@@ -47,9 +49,9 @@ def users_loop():
             user_menu()
             user_loop()
         elif choice == "a":
-        #     create_user()
-        #     list_users()
-        #     users_menu()
+            create_user()
+            list_users()
+            users_menu()
             pass
         elif choice == "b":
             initial_loop()
@@ -61,15 +63,9 @@ def users_loop():
 def user_loop():
     while True:
         choice = input("> ").lower()
-        if choice.isdigit():
-            show_book(int(choice))
-            book_menu()
-            book_loop()
-        elif choice == "u":
-            # update_user()
-            # show_user_details()
-            # user_menu()
-            pass
+        if choice == "u":
+            update_user()
+            user_menu()
         elif choice == "d":
             delete_user() 
             list_users()
@@ -79,6 +75,25 @@ def user_loop():
             list_users()
             users_menu()
             users_loop()
+        elif choice == "e":
+            exit_program()
+        else:
+            print("Invalid choice")
+
+def books_loop():
+    while True:
+        choice = input("> ").lower()
+        if choice == "i":
+            show_book_details()
+            book_menu()
+            book_loop()
+        elif choice == "a":
+            create_book()
+            list_books()
+            books_menu()
+            pass
+        elif choice == "b":
+            initial_loop()
         elif choice == "e":
             exit_program()
         else:
@@ -116,9 +131,15 @@ def users_menu():
 
 def user_menu():
     print("\n******************\n")
-    print("Type the book's number to see its details")
     print("Type U or u to update this user")
     print("Type D or d to delete this user")
+    print("Type B or b to go back to previous menu")
+    print("Type E or e to exit\n")
+
+def books_menu():
+    print("\n******************\n")
+    print("Type I or i to see the book's details")
+    print("Type A or a to add a new book")
     print("Type B or b to go back to previous menu")
     print("Type E or e to exit\n")
 
