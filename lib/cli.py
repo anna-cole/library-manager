@@ -32,7 +32,8 @@ def users_loop():
             if user:
                 user_menu()
                 user_loop(user, user_choice)
-         
+            else:
+                users_menu()
         elif user_choice == "a":
             create_user()
             list_users()
