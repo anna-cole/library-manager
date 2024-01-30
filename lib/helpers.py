@@ -115,7 +115,7 @@ def update_book(book):
             new_user_id = (User.find_by_name(new_user)).id
             book.user_id = new_user_id
         book.update()
-        print(f'\nSuccess: book {book.title} updated.')
+        print(f'\nSuccess: book updated.')
     except Exception as exc:
         print('\nError updating book: ', exc)  
  
