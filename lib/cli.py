@@ -32,8 +32,7 @@ def users_loop():
             if user:
                 user_menu()
                 user_loop(user, user_choice)
-            else:
-                users_menu()
+         
         elif user_choice == "a":
             create_user()
             list_users()
@@ -93,11 +92,8 @@ def book_loop(user_choice, user, book, book_choice):
             user_loop(user, user_choice)
         elif choice == "b":
             show_user(int(user_choice))
-            if user:
-                user_menu()
-                user_loop(user, user_choice)
-            else:
-                users_menu()
+            user_menu()
+            user_loop(user, user_choice)
         elif choice == "e":
             exit_program()
         else:
