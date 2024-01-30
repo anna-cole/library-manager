@@ -108,10 +108,16 @@ def update_book(book):
             genre = book.genre
         else:
             book.genre = genre 
+        new_user = input("Enter the book's new user name: ")
+        if new_user == '':
+            new_user = book.user_id
+        else:
+            new_user_id = (User.find_by_name(new_user)).id
+            book.user_id = new_user_id
         book.update()
         print(f'\nSuccess: book {book.title} updated.')
     except Exception as exc:
-        print('Error updating book: ', exc)  
+        print('\nError updating book: ', exc)  
  
 def find_book_by_title():
     # title = input("Enter the book's title: ")
