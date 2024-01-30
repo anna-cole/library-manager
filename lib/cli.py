@@ -126,8 +126,8 @@ def user_menu():
 
 def book_menu():
     print("\n******************\n")
-    print("Type U or u to update this book")
     print("Type D or d to delete this book")
+    print("Type U or u to update this book")
     print("Type B or b to go back to previous menu")
     print("Type E or e to exit\n")
 
