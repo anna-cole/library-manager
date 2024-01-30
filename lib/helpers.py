@@ -119,6 +119,7 @@ def update_book(book):
     except Exception as exc:
         print('\nError updating book: ', exc)  
  
+
 def find_book_by_title():
     # title = input("Enter the book's title: ")
     # book = Book.find_by_title(title)
