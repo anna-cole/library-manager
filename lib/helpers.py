@@ -73,6 +73,7 @@ def show_book(num, user):
     try:
         books = user.books()
         book = books[num - 1]
+        print(f"\nHere are the details of {user.name}'s selected book:")
         print(f"\nTitle: {book.title}\nGenre: {book.genre}")
         return book
     except Exception as exc:
