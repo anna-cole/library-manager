@@ -88,8 +88,9 @@ def book_loop(user_choice, user, book, book_choice):
             user_loop(user, user_choice)
         elif choice == "u":
             update_book(book)
-            book = show_book(int(book_choice), user)
-            book_menu()
+            show_user(int(user_choice))
+            user_menu()
+            user_loop(user, user_choice)
         elif choice == "b":
             show_user(int(user_choice))
             if user:
