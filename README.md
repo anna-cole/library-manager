@@ -1,18 +1,33 @@
-# Phase 3 CLI+ORM Project Template
+# Library Manager application
 
-## Learning Goals
+## Description
+Welcome to our project! Library Manager is a python app with an user-friendly command-line interface that allows library staff to efficiently manage books and customers. 
 
-- Discuss the basic directory structure of a CLI.
-- Outline the first steps in building a CLI.
+This CLI utilizes an SQLite database to store records, making it easier to see, search, add, update and delete books and customers data. We hope you enjoy and we look forward to your contributions!
 
----
+## Directory and file structure
 
-## Introduction
+- The program files are located inside the /lib folder: book.py and user.py (which respectively contains the model classes Book and User), debug.py (seeding database with mock data), helpers.py (helper functions) and cli.py (menu choices and logic). 
+  
+- Database, README.md and other files are in the root directory.
 
-You now have a basic idea of what constitutes a CLI. Fork and clone this lesson
-for a project template for your CLI.
+## Intructions to run the application
 
-Take a look at the directory structure:
+- Step 1: Assuming you already have python installed in your computer, run the command python lib/debug.py in the terminal, to populate the database with fake data. At any time, run this script again if you need to reset the database. 
+
+- Step 2: Run python lib/cli.py to execute the command line program. 
+
+## Library Manager app functionalities
+
+- The functions located in lib/helper.py (which, in turn, reference functions in user.py and book.py) allow the application user to perform basic CRUD operations on books and customers. Those functions are: 
+
+VIEW STAFF USERS - view(): Displays all staff members' first and last names, staff ID number, and position ID.
+ADD A STAFF MEMBER - add(): Adds a user to the database. Requires the user's first and last name, along with their position designation.
+EDIT A STAFF MEMBER - edit(): Allows you to select a staff member based on their staff ID and choose which attributes to edit, such as their first name, last name, or position ID.
+DELETE A STAFF MEMBER - delete(): Allows you to select a staff member based on their staff ID and permanently delete them from the database.
+
+
+
 
 ```console
 .

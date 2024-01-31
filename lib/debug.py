@@ -25,8 +25,8 @@ def reset_database():
   Book.create("The Secret", "Self-help", syrio.id)
   Book.create("Stardust", "Fantasy", daenerys.id)
 
-breakpoint()
-#reset_database()
+#breakpoint()
+reset_database()
 
 
 

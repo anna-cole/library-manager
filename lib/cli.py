@@ -52,7 +52,7 @@ def user_loop(user, user_choice):
             book = show_book(int(book_choice), user)
             if book:
                 book_menu()
-                book_loop(user_choice, user, book, book_choice)
+                book_loop(user_choice, user, book)
             else:
                 user_menu()
         elif book_choice == "a":
@@ -68,7 +68,6 @@ def user_loop(user, user_choice):
             update_user(user)
             show_user(int(user_choice))
             user_menu()
-            user_loop(user, user_choice)
         elif book_choice == "b":
             list_users()
             users_menu()
@@ -78,7 +77,7 @@ def user_loop(user, user_choice):
         else:
             print("Invalid choice")
 
-def book_loop(user_choice, user, book, book_choice):
+def book_loop(user_choice, user, book):
     while True:
         choice = input("> ").lower()
         if choice == "d":
