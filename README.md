@@ -1,9 +1,9 @@
 # Library Manager application
 
 ## Description
-Welcome to our project! Library Manager is a python app with an user-friendly command-line interface that allows library staff to efficiently manage books and customers. 
+Welcome to our project! Library Manager is a python app with an user-friendly command-line interface that allows library staff to efficiently manage its books and customers. 
 
-This CLI utilizes an SQLite database to store records, making it easier to see, search, add, update and delete books and customers data. We hope you enjoy and we look forward to your contributions!
+This CLI utilizes an SQLite database to store records, making it easier to see, search, add, update and delete borrowed books and library users data. We hope you enjoy and we look forward to your contributions!
 
 ## Directory and file structure
 
@@ -19,12 +19,27 @@ This CLI utilizes an SQLite database to store records, making it easier to see, 
 
 ## Library Manager app functionalities
 
-- The functions located in lib/helper.py (which, in turn, reference functions in user.py and book.py) allow the application user to perform basic CRUD operations on books and customers. Those functions are: 
+The functions located in lib/helper.py (which, in turn, reference functions in user.py and book.py) allow library staff to perform basic CRUD operations on books and customers. Those functions are: 
 
-VIEW STAFF USERS - view(): Displays all staff members' first and last names, staff ID number, and position ID.
-ADD A STAFF MEMBER - add(): Adds a user to the database. Requires the user's first and last name, along with their position designation.
-EDIT A STAFF MEMBER - edit(): Allows you to select a staff member based on their staff ID and choose which attributes to edit, such as their first name, last name, or position ID.
-DELETE A STAFF MEMBER - delete(): Allows you to select a staff member based on their staff ID and permanently delete them from the database.
+EXIT PROGRAM - exit_program(): It closes the application.
+
+VIEW ALL USERS - list_users(): Displays an ordered list with all users' names. 
+
+SHOW USER DETAILS - show_user(): Displays details of a selected user, like its address, membership level and a list of borrowed books.
+
+ADD USER - create_user(): It adds a new library user to the database. Requires the user's name, address and membership level. 
+
+DELETE USER - delete_user(): It permanentely deletes a selected user from the database.
+
+EDIT AN USER - update_user(): Allows the staff member to update details of a selected library user, like name, address and membership level. This function allows it to enter an empty string in the options that are not to be updated.
+
+SHOW BOOK DETAILS - show_book(): Displays details of a selected book, like its title, genre and user who borrowed it. 
+
+ADD BOOK TO USER - create_book_for_user(): It adds a new book to a selected user. It requires the book's title and genre. 
+
+DELETE BOOK - delete_book(): It permanentely deletes a selected book from the database.
+
+
 
 
 
