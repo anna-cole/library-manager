@@ -7,15 +7,26 @@ This CLI utilizes an SQLite database to store records, making it easier to see, 
 
 ## Directory and file structure
 
-- The program files are located inside the /lib folder: book.py and user.py (which respectively contains the model classes Book and User), debug.py (seeding database with mock data), helpers.py (helper functions) and cli.py (menu choices and logic). 
+The program files are located inside the /lib folder: 
+- cli.py: The CLI script, with menu choices and user prompts. It calls the helper functions exit_program, list_users, show_user, create_user, delete_user, update_user, show_book, create_book_for_user, delete_book and update_book, according to the user prompts. 
+- helpers.py: This file contains the helper functions above mentioned, with logic to perform basic CRUD operations. You can find a complete description of those functions further below.    
+- book.py and user.py: Those files respectively contain the data model classes Book and User, both with functions for data persistence, like creating and deleting data tables, creating and deleting data table rows, properties for data validation, functions that return object per row, etc.
+- debug.py: This file can be used for debugging and is also reponsible for seeding the database with mock data and resetting the database.
+
+
+- __init__.py: This file creates the necessary database constants.
   
-- Database, README.md and other files are in the root directory.
+README.md and other files are in the root directory. After seeding the database, a database file called library.db will be created in the root directory.
 
-## Intructions to run the application
+## Installing and running the application
 
-- Step 1: Assuming you already have python installed in your computer, run the command python lib/debug.py in the terminal, to populate the database with fake data. At any time, run this script again if you need to reset the database. 
+To install and run Library Manager, ensure that you have Python 3 and pip installed on your system.
 
-- Step 2: Run python lib/cli.py to execute the command line program. 
+1. Clone this repository to your local machine and navigate to its directory.
+2. Run pipenv install to install all the necessary package dependencies.
+3. Run pipenv shell to enter the virtual environment.
+4. Run python lib/debug.py to populate the database with mock data (at any time you can run this script again if you need to reset the database).
+5. Run python lib/cli.py to start the command line program.
 
 ## Library Manager app functionalities
 
@@ -39,163 +50,30 @@ ADD BOOK TO USER - create_book_for_user(): It adds a new book to a selected user
 
 DELETE BOOK - delete_book(): It permanentely deletes a selected book from the database.
 
+EDIT A BOOK - update_book(): Allows the staff member to update details of a selected book, like title, genre and user who borrowed it. This function allows it to enter an empty string in the options that are not to be updated.
 
+## Video explaining the app functionalities
 
+[Video showing features](https://youtu.be/k_j5auAiY3M)
 
+## Check my blog post about how to create a React app from scratch and how to connect it to Github, both techniques used in this app! 
 
+[A beginner’s guide on how to build a React single page application from scratch and how to connect it to Github.](https://medium.com/@anna-cole/a-beginners-guide-on-how-to-build-a-react-single-page-application-from-scratch-b925f9697573)
 
-```console
-.
-├── Pipfile
-├── Pipfile.lock
-├── README.md
-└── lib
-    ├── models
-    │   ├── __init__.py
-    │   └── model_1.py
-    ├── cli.py
-    ├── debug.py
-    └── helpers.py
-```
+## Contributing
+We welcome any and all contributions! Here are some ways you can get started:
+1. Report bugs: If you encounter any bugs, please let us know. Open up an issue and let us know the problem.
+2. Contribute code: If you are a developer and want to contribute, open a pull request with your contributions and wait for pull request to be merged, if approved. 
+3. Suggestions: If you don't want to code but have some awesome ideas, open up an issue explaining some updates or improvements you would like to see!
+4. Documentation: If you see the need for some additional documentation, feel free to add some!
 
-Note: The directory also includes two files named `CONTRIBUTING.md` and
-`LICENSE.md` that are specific to Flatiron's curriculum. You can disregard or
-delete the files if you want.
+## License
 
----
+At the moment, licensing is not being offered for Library Manager. For any questions, please contact our support team.
 
-## Generating Your Environment
+## Support
 
-You might have noticed in the file structure- there's already a Pipfile!
-
-Install any additional dependencies you know you'll need for your project by
-adding them to the `Pipfile`. Then run the commands:
-
-```console
-pipenv install
-pipenv shell
-```
-
----
-
-## Generating Your CLI
-
-A CLI is, simply put, an interactive script and prompts the user and performs
-operations based on user input.
-
-The project template has a sample CLI in `lib/cli.py` that looks like this:
-
-```py
-# lib/cli.py
-
-from helpers import (
-    exit_program,
-    helper_1
-)
-
-
-def main():
-    while True:
-        menu()
-        choice = input("> ")
-        if choice == "0":
-            exit_program()
-        elif choice == "1":
-            helper_1()
-        else:
-            print("Invalid choice")
-
-
-def menu():
-    print("Please select an option:")
-    print("0. Exit the program")
-    print("1. Some useful function")
-
-
-if __name__ == "__main__":
-    main()
-```
-
-The helper functions are located in `lib/helpers.py`:
-
-```py
-# lib/helpers.py
-
-def helper_1():
-    print("Performing useful function#1.")
-
-
-def exit_program():
-    print("Goodbye!")
-    exit()
-```
-
-You can run the template CLI with `python lib/cli.py`, or include the shebang
-and make it executable with `chmod +x`. The template CLI will ask for input, do
-some work, and accomplish some sort of task.
-
-Past that, CLIs can be whatever you'd like, as long as you follow the project
-requirements.
-
-Of course, you will update `lib/cli.py` with prompts that are appropriate for
-your application, and you will update `lib/helpers.py` to replace `helper_1()`
-with a useful function based on the specific problem domain you decide to
-implement, along with adding other helper functions to the module.
-
-In the `lib/models` folder, you should rename `model_1.py` with the name of a
-data model class from your specific problem domain, and add other classes to the
-folder as needed. The file `lib/models/__init__.py` has been initialized to
-create the necessary database constants. You need to add import statements to
-the various data model classes in order to use the database constants.
-
-You are also welcome to implement a different module and directory structure.
-However, your project should be well organized, modular, and follow the design
-principal of separation of concerns, which means you should separate code
-related to:
-
-- User interface
-- Data persistence
-- Problem domain rules and logic
-
----
-
-## Updating README.md
-
-`README.md` is a Markdown file that should describe your project. You will
-replace the contents of this `README.md` file with a description of **your**
-actual project.
-
-Markdown is not a language that we cover in Flatiron's Software Engineering
-curriculum, but it's not a particularly difficult language to learn (if you've
-ever left a comment on Reddit, you might already know the basics). Refer to the
-cheat sheet in this assignments's resources for a basic guide to Markdown.
-
-### What Goes into a README?
-
-This README serves as a template. Replace the contents of this file to describe
-the important files in your project and describe what they do. Each Python file
-that you edit should get at least a paragraph, and each function should be
-described with a sentence or two.
-
-Describe your actual CLI script first, and with a good level of detail. The rest
-should be ordered by importance to the user. (Probably functions next, then
-models.)
-
-Screenshots and links to resources that you used throughout are also useful to
-users and collaborators, but a little more syntactically complicated. Only add
-these in if you're feeling comfortable with Markdown.
-
----
-
-## Conclusion
-
-A lot of work goes into a good CLI, but it all relies on concepts that you've
-practiced quite a bit by now. Hopefully this template and guide will get you off
-to a good start with your Phase 3 Project.
-
-Happy coding!
-
----
+For any questions or support, please email acrrj123@gmail.com
 
 ## Resources
 
