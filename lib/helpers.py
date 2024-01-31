@@ -36,7 +36,7 @@ def create_user():
     membership = input("Enter user's membership level: ")
     try:
         user = User.create(name, address, membership)
-        print(f'\nSuccess: {user.name} created.')
+        print(f'\nSuccess: User {user.name} created.')
     except Exception as exc:
         print("Error creating user: ", exc)
 
@@ -65,7 +65,7 @@ def update_user(user):
         else: 
             user.membership = membership
         user.update()
-        print(f'\nSuccess: {user.name} updated')
+        print(f'\nSuccess: User {user.name} updated')
     except Exception as exc: 
         print("Error updating user ", exc)
 
@@ -115,7 +115,7 @@ def update_book(book):
             new_user_id = (User.find_by_name(new_user)).id
             book.user_id = new_user_id
         book.update()
-        print(f'\nSuccess: book updated.')
+        print(f'\nSuccess: book {book.title} updated.')
     except Exception as exc:
         print('\nError updating book: ', exc)  
  
