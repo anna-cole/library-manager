@@ -36,7 +36,7 @@ def create_user():
     membership = input("Enter user's membership level: ")
     try:
         user = User.create(name, address, membership)
-        print(f'\nSuccess: User {user.name} created.')
+        print(f'\nSuccess: User {user.name} created')
     except Exception as exc:
         print("Error creating user: ", exc)
 
