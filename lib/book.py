@@ -176,7 +176,6 @@ class Book:
     row = CURSOR.execute(sql, (title,)).fetchone()
     return cls.instance_from_db(row) if row else None
   
-# print(Book.get_all())
   
  
 
