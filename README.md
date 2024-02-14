@@ -1,9 +1,9 @@
 # Library Manager application
 
 ## Description
-Welcome to our project! Library Manager is a Python app with an user-friendly command line interface that allows library staff to efficiently manage its books and customers by organizing data and performing basic CRUD operations.
+Welcome to our project! Library manager is a Python app with a user-friendly command line interface for efficiently managing books and customers' information, organizing data and performing basic CRUD operations.
 
-This CLI utilizes an SQLite database to store records, making it easier to see, search, add, update and delete borrowed books and library users data. We hope you enjoy and we look forward to your contributions!
+This CLI utilizes a SQLite database to store records, making it easier to read, search, add, update and delete books and users' data. We hope you enjoy and we look forward to your contributions!
 
 ## Directory and file structure
 
