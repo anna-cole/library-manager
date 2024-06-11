@@ -77,6 +77,4 @@ At the moment, licensing is not being offered for Library Manager. For any quest
 
 For any questions or support, please email acrrj123@gmail.com
 
-## Resources
 
-- [Markdown Cheat Sheet](https://www.markdownguide.org/cheat-sheet/)
