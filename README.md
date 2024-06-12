@@ -56,7 +56,7 @@ EDIT A BOOK - update_book(): Allows the staff member to update details of a sele
 
 ## Video explaining the app functionalities
 
-[Video showing features](https://www.youtube.com/watch?v=X-dpHlAhFH8)
+[Video showing features](https://www.loom.com/share/bc09cf99e91a486fb75a8806b29bd58a?sid=d2448a63-d8bf-4f8a-9f03-d6835d162f5b)
 
 ## Check my blog post about how to create a python CLI app and how to connect it to Github. 
 
