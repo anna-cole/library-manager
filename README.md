@@ -62,7 +62,7 @@ We welcome any and all contributions! Here are some ways you can get started:
 4. Documentation: If you see the need for some additional documentation, feel free to add some!
 
 ## License
-At the moment, licensing is not being offered. 
+At the moment, licensing is not being offered. For any questions, please contact our support team.
 
 ## Support
 For any questions or support, please email acrrj123@gmail.com
