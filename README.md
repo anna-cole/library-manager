@@ -1,4 +1,4 @@
-# Library Manager application
+# Library Manager 
 
 ## Description
 Welcome to our project! Library manager is a Python app with a user-friendly command line interface for efficiently managing book inventory and customer’s information, organizing data and performing basic CRUD operations. My passion for books inspired me to create this app.
